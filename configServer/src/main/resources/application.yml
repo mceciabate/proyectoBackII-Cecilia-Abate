@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/mceciabate/esp-back-i-parcial-Cecilia-Abate
-          default-label: develop
+          uri: https://github.com/mceciabate/proyectoBackII-Cecilia-Abate
+          default-label: main
           force-pull: true
           search-paths: ConfigData
