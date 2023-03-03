@@ -2,36 +2,30 @@ server:
   port: ${PORT:${SERVER_PORT:0}}
 
 #idRandom: ${random.value}
-
 spring:
   application:
-    name: api-serie
+    name: api-bills
+    datasource:
+      url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+      driverClassName: org.h2.Driver
+      username: sa
+      password: sa
+    jpa:
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          format_sql: true
+          dialect: org.hibernate.dialect.H2Dialect
+      open-in-view: false
+    h2:
+      console:
+        enabled: true
+        path: /h2-console
   zipkin:
     baseUrl: http://localhost:9411/
     enabled: true
-  rabbitmq:
-    username: guest
-    password: guest
-    host: localhost
-    port: 5672
-#  datasource:
-#    driverClassName: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/movie_dev
-#    username: root
-#    password: root
-#  jpa:
-#    hibernate.ddl-auto: update
-#    generate-ddl: true
-#    show-sql: true
-
-  data:
-    mongodb:
-#      username: usrseriemongo
-#      password: pwdseriemongo
-      database: seriedevmongo
-      port: 27017
-      host: localhost
-
 eureka:
   client:
     registerWithEureka: true
@@ -40,8 +34,6 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${random.int}
-
-
 management:
   endpoints:
     web:
@@ -53,7 +45,26 @@ management:
 
 info:
   app:
-    name: api series
+    name: api bills
     version: 1.0.0
-    description: Series
+    description: Bills
+
+  main:
+    allow-circular-references: true
+    security:
+      oauth2:
+        client:
+          provider:
+            keycloak:
+              issuer-uri: http://localhost:8085/realms/digitalHouse
+          registration:
+            keycloak:
+              client-id: oldc-postman
+              client-secret: T8kVwiojBQ8r7LShaUYXdgSFHhOvYCfZ
+              scope: openid
+              redirect-uri: http://localhost:8082
+app:
+    cors:
+      allowed-origins: http://localhost:3000
+
 
