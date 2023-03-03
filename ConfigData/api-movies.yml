@@ -6,14 +6,37 @@ server:
 spring:
   application:
     name: api-movies
-  zipkin:
-    baseUrl: http://localhost:9411/
-    enabled: true
-  rabbitmq:
-    username: guest
-    password: guest
-    host: localhost
-    port: 5672
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceURL:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${random.int}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: api movies
+    version: 1.0.0
+    description: Películas
+
+#  zipkin:
+#    baseUrl: http://localhost:9411/
+#    enabled: true
+#  rabbitmq:
+#    username: guest
+#    password: guest
+#    host: localhost
+#    port: 5672
   data:
     mongodb:
       uri: mongodb://localhost:27017/moviesdb
@@ -45,27 +68,6 @@ app:
 #    generate-ddl: true
 #    show-sql: true
 
-eureka:
-  client:
-    registerWithEureka: true
-    fetchRegistry: false
-    serviceURL:
-      defaultZone: http://localhost:8761/eureka
-  instance:
-    instance-id: ${spring.application.name}:${random.int}
 
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: info
-  info:
-    env:
-      enabled: true
 
-info:
-  app:
-    name: api movies
-    version: 1.0.0
-    description: Películas
