@@ -11,7 +11,8 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/users")
+//@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
   private final IUserService userService;
  //TODO  estos dos endpoints funcionaran cuando este configurada la seguridad en el proyecto
