@@ -1,0 +1,102 @@
+server:
+  port: ${PORT:${SERVER_PORT:0}}
+
+#idRandom: ${random.value}
+
+spring:
+  application:
+    name: api-users
+  zipkin:
+    baseUrl: http://localhost:9411/
+    enabled: true
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
+  data:
+    mongodb:
+#      username: usrseriemongo
+#      password: pwdseriemongo
+      database: usersdbmongo
+      port: 27017
+      host: localhost
+  main:
+    allow-circular-references: true
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceURL:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${random.int}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: api users
+    version: 1.0.0
+    description: Usuarios
+
+#resilience4j.circuitbreaker:
+#  instances:
+#    clientMovie:
+#      allowHealthIndicatorToFail: false
+#      registerHealthIndicator: true
+#      slidingWindowSize: 5
+#      permittedNumberOfCallsInHalfOpenState: 3
+#      slidingWindowType: TIME_BASED
+#      minimumNumberOfCalls: 20
+#      waitDurationInOpenState: 50s
+#      failureRateThreshold: 50
+#      eventConsumerBufferSize: 10
+#    clientSerie:
+#      allowHealthIndicatorToFail: false
+#      registerHealthIndicator: true
+#      slidingWindowSize: 5
+#      permittedNumberOfCallsInHalfOpenState: 3
+#      slidingWindowType: TIME_BASED
+#      minimumNumberOfCalls: 20
+#      waitDurationInOpenState: 50s
+#      failureRateThreshold: 50
+#      eventConsumerBufferSize: 10
+
+
+#      recordFailurePredicate: io.github.robwin.exception.RecordFailurePredicate
+
+#resilience4j.retry:
+#  instances:
+#    clientMovie:
+#      maxAttempts: 3
+#      waitDuration: 10s
+#      enableExponentialBackoff: true
+#      exponentialBackoffMultiplier: 2
+#      retryExceptions:
+#        - java.net.ConnectException
+#        - org.springframework.web.client.HttpServerErrorException
+#        - java.io.IOException
+#    clientSerie:
+#      maxAttempts: 3
+#      waitDuration: 10s
+#      enableExponentialBackoff: true
+#      exponentialBackoffMultiplier: 2
+#      retryExceptions:
+#        - java.net.ConnectException
+#        - org.springframework.web.client.HttpServerErrorException
+#        - java.io.IOException
+#      ignoreExceptions:
+#        - io.github.robwin.exception.BusinessException
+
