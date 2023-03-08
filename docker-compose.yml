@@ -38,9 +38,10 @@ services:
   mongomovies:
     container_name: mongo-dev
     image: mongo:4.2
+    restart: always
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_DATABASE=moviesdb
+      - MONGO_INITDB_DATABASE=auth
       - MONGO_INITDB_ROOT_PASSWORD=pass
     networks: 
       - mongo-compose-network
@@ -52,6 +53,7 @@ services:
   mongo-express:
     container_name: mongo-express
     image: mongo-express
+    restart: always
     depends_on:
       - mongomovies
     networks: 
