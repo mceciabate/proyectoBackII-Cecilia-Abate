@@ -30,14 +30,14 @@ management:
   zipkin:
     baseUrl: http://localhost:9411/
     enabled: true
-  rabbitmq:
-    username: guest
-    password: guest
-    host: localhost
-    port: 5672
+#  rabbitmq:
+#    username: guest
+#    password: guest
+#    host: localhost
+#    port: 5672
   data:
     mongodb:
-      uri: mongodb://localhost:27017/moviesdb
+      uri: mongodb://localhost:27018/moviesdb
   main:
     allow-circular-references: true
   security:
@@ -55,17 +55,4 @@ management:
 app:
   cors:
     allowed-origins: http://localhost:3000
-
-#  datasource:
-#    driverClassName: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/movie_dev
-#    username: root
-#    password: root
-#  jpa:
-#    hibernate.ddl-auto: update
-#    generate-ddl: true
-#    show-sql: true
-
-
-
 
