@@ -18,7 +18,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: info
+        include: info, health
   info:
     env:
       enabled: true
@@ -26,6 +26,12 @@ management:
       name: api movies
       version: 1.0.0
       description: Películas
+
+  springdoc:
+   show-actuator: true
+   swagger-ui:
+     groups-order: DESC
+     disable-swagger-default-url: true
 
   zipkin:
     baseUrl: http://localhost:9411/
@@ -35,11 +41,14 @@ management:
 #    password: guest
 #    host: localhost
 #    port: 5672
+
   data:
     mongodb:
       uri: mongodb://localhost:27018/moviesdb
+
   main:
     allow-circular-references: true
+
   security:
     oauth2:
       client:
