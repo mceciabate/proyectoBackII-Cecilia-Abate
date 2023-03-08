@@ -38,7 +38,7 @@ public class MoviesController {
     private final MovieMapper movieMapper;
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_user') AND hasAnyAuthority('AUD_account') AND hasAnyAuthority('GROUP_/Empleados/Departamento RH')")
+    @PreAuthorize("hasRole('ROLE_user') AND hasAuthority('SCOPE_digital') AND hasAnyAuthority('GROUP_/Empleados/Departamento RH')")
     public List<MovieDto> getMovies() {
         return movieService.getMovies().stream()
                 .map(movieMapper::toMovieDto)

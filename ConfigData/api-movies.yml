@@ -22,12 +22,10 @@ management:
   info:
     env:
       enabled: true
-
-info:
-  app:
-    name: api movies
-    version: 1.0.0
-    description: Películas
+    app:
+      name: api movies
+      version: 1.0.0
+      description: Películas
 
 #  zipkin:
 #    baseUrl: http://localhost:9411/

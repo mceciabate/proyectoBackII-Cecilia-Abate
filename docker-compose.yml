@@ -1,0 +1,110 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_keycloak
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5439:5439"
+    networks:
+      - local-keycloak
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  keycloak:
+    depends_on:
+      - postgres
+    container_name: local_keycloak
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_PASSWORD: 1234
+      KC_DB_USERNAME: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+    image: quay.io/keycloak/keycloak:18.0.0
+    command: start-dev
+    ports:
+      - "8085:8080"
+    restart: unless-stopped
+    networks:
+      - local-keycloak
+
+  mongomovies:
+    container_name: mongo-dev
+    image: mongo:4.2
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_DATABASE=moviesdb
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    networks: 
+      - mongo-compose-network
+    ports:
+      - '27018:27017'
+    volumes: 
+      - ./data:/data/db
+  
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    depends_on:
+      - mongomovies
+    networks: 
+      - mongo-compose-network
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo-dev
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=tribes
+    ports:
+      - '8081:8081'
+    volumes: 
+      - ./data:/data/db      
+
+# networks:
+  
+    # image: mongo
+    # container_name: mongomovies
+    # restart: always
+    # environment:
+    #   MONGO_INITDB_DATABASE: 'moviesdb'
+    #   MONGO_INITDB_ROOT_USERNAME: 'usrmoviegdb'
+    #   MONGO_INITDB_ROOT_PASSWORD: 'pwdmoviegdb'
+    # ports:
+    #   - 27019:27017
+    # expose:
+    #   - 27019
+    # volumes:
+    #   - ./movies-mongo-init.js:/docker-entrypoint-initdb.d/movies-mongo-init.js:ro
+  
+  zipkin:
+    image: openzipkin/zipkin-slim
+    container_name: zipkin
+    environment:
+      - STORAGE_TYPE=mem
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411
+    depends_on:
+      - storage
+
+  storage:
+    image: busybox:1.31.0
+    container_name: fake_storage
+
+networks:
+  local-keycloak:
+  mongo-compose-network:
+    driver: bridge
+
+volumes:
+  db:
+  mongo-movies:
+    driver: local
+  
