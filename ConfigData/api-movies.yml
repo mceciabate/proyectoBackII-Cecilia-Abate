@@ -54,11 +54,11 @@ management:
       client:
         provider:
           keycloak:
-            issuer-uri: http://localhost:8085/realms/digitalHouse
+            issuer-uri: http://localhost:8085/realms/DH
         registration:
           keycloak:
-            client-id: oldc-postman
-            client-secret: T8kVwiojBQ8r7LShaUYXdgSFHhOvYCfZ
+            client-id: dh-movies
+            client-secret: 6tDvZ6rTk70D4ech8bGhKPWdLvhoYUiE
             scope: openid
             redirect-uri: http://localhost:8082
 app:
