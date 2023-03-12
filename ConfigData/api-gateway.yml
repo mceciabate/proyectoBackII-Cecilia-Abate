@@ -14,7 +14,7 @@ spring:
           gateway-api:
             provider: keycloak
             client-id: api-gateway
-            client-secret: 6tDvZ6rTk70D4ech8bGhKPWdLvhoYUiE
+            client-secret: uaSiIS1Yc8neUsOba9f0oiSSY9PxJo6h
             authorization-grant-type: authorization_code
             redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
 #spring:
@@ -35,20 +35,20 @@ spring:
 #            redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
   cloud:
     gateway:
-      discovery:
-         locator:
-            enabled: true
       default-filters:
-          - TokenRelay
+         - TokenRelay
       routes:
-        - id: msmovies
-          uri: lb://api-movies
-          predicates:
-            - Path=/api/v1/movies/**
-        - id: msusers
-          uri: lb://api-users
-          predicates:
-            - Path=/api/v1/users/**
+         - id: msmovies
+           uri: lb://api-movies
+           predicates:
+              - Path=/api/v1/movies/**
+         - id: msusers
+           uri: lb://api-users
+           predicates:
+              - Path=/api/v1/users/**
+      discovery:
+        locator:
+          enabled: true
 
 #  cloud:
 #    gateway:
