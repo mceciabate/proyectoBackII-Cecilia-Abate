@@ -44,7 +44,7 @@ management:
 
   data:
     mongodb:
-      uri: mongodb://localhost:27018/moviesdb
+      uri: mongodb://admin:pass@localhost:27018/
 
   main:
     allow-circular-references: true
