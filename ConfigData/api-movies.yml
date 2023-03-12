@@ -42,15 +42,17 @@ management:
 #    host: localhost
 #    port: 5672
 
-  data:
-    mongodb:
-      uri: mongodb://admin:pass@localhost:27018/
 #  data:
 #    mongodb:
-#      database: moviesdb
-#      port: 27018
-#      host: localhost
-
+#      uri: mongodb://admin:pass@localhost:27018/
+  data:
+    mongodb:
+     host: localhost
+     port: 27018
+     password: pass
+     username: admin
+     authentication-database: admin
+     database: moviesdb
 
   main:
     allow-circular-references: true
