@@ -8,20 +8,21 @@ spring:
     oauth2:
       client:
         provider:
-          keycloack:
-           issuer-uri: http://localhost:8085/realms/DH
+          keycloack-provider:
+            issuer-uri: http://localhost:8085/realms/DH
     registration:
-          keycloack:
+      api-gateway-service:
+            provider: keycloak-provider
             client-id: api-gateway
             client-secret: 6tDvZ6rTk70D4ech8bGhKPWdLvhoYUiE
             authorization-grant-type: authorization_code
             redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
-    cloud:
-      gateway:
-        discovery:
-          locator:
+  cloud:
+    gateway:
+      discovery:
+         locator:
             enabled: true
-        default-filters:
+      default-filters:
           - TokenRelay
       routes:
         - id: msmovies
