@@ -4,24 +4,53 @@ server:
 spring:
   application:
     name: gateway
-  cloud:    
-    gateway:      
-      discovery:
-        locator:
-          enabled: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloack:
+           issuer-uri: http://localhost:8085/realms/DH
+    registration:
+          keycloack:
+            client-id: api-gateway
+            client-secret: 6tDvZ6rTk70D4ech8bGhKPWdLvhoYUiE
+            authorization-grant-type: authorization_code
+            redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
+    cloud:
+      gateway:
+        discovery:
+          locator:
+            enabled: true
+        default-filters:
+          - TokenRelay
       routes:
         - id: msmovies
           uri: lb://api-movies
           predicates:
             - Path=/api/v1/movies/**
-        - id: msbills
-          uri: lb://api-bills
-          predicates:
-            - Path=/api/v1/bills/**
         - id: msusers
           uri: lb://api-users
           predicates:
             - Path=/api/v1/users/**
+
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#      routes:
+#        - id: msmovies
+#          uri: lb://api-movies
+#          predicates:
+#            - Path=/api/v1/movies/**
+#        - id: msbills
+#          uri: lb://api-bills
+#          predicates:
+#            - Path=/api/v1/bills/**
+#        - id: msusers
+#          uri: lb://api-users
+#          predicates:
+#            - Path=/api/v1/users/**
 
 info:
   app:
@@ -41,3 +70,6 @@ management:
       web:
          exposure:
             include: gateway
+
+
+
