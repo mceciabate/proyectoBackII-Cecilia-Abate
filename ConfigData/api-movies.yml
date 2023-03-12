@@ -42,14 +42,14 @@ management:
 #    host: localhost
 #    port: 5672
 
-#  data:
-#    mongodb:
-#      uri: mongodb://localhost:27018/moviesdb
   data:
     mongodb:
-      database: moviesdb
-      port: 27018
-      host: localhost
+      uri: mongodb://admin:pass@localhost:27018/
+#  data:
+#    mongodb:
+#      database: moviesdb
+#      port: 27018
+#      host: localhost
 
 
   main:
