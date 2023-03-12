@@ -48,7 +48,7 @@ management:
   data:
     mongodb:
      host: localhost
-     port: 27018
+     port: 27019
      password: pass
      username: admin
      authentication-database: admin
