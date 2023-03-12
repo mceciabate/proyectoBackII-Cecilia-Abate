@@ -1,6 +1,5 @@
 server:
   port: ${PORT:${SERVER_PORT:8080}}
-
 spring:
   application:
     name: api-gateway
@@ -8,15 +7,32 @@ spring:
     oauth2:
       client:
         provider:
-          keycloack-provider:
+          keycloak:
             issuer-uri: http://localhost:8085/realms/DH
-    registration:
-      api-gateway-service:
-            provider: keycloak-provider
+            jwk-set-uri: http://localhost:8085/realms/DH/protocol/openid-connect/certs
+        registration:
+          gateway-api:
+            provider: keycloak
             client-id: api-gateway
             client-secret: 6tDvZ6rTk70D4ech8bGhKPWdLvhoYUiE
             authorization-grant-type: authorization_code
             redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
+#spring:
+#  application:
+#    name: api-gateway
+#  security:
+#    oauth2:
+#      client:
+#        provider:
+#          keycloack-provider:
+#            issuer-uri: http://localhost:8085/realms/DH
+#    registration:
+#      api-gateway-service:
+#            provider: keycloak-provider
+#            client-id: api-gateway
+#            client-secret: 6tDvZ6rTk70D4ech8bGhKPWdLvhoYUiE
+#            authorization-grant-type: authorization_code
+#            redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
   cloud:
     gateway:
       discovery:
