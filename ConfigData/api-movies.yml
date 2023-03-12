@@ -42,9 +42,15 @@ management:
 #    host: localhost
 #    port: 5672
 
+#  data:
+#    mongodb:
+#      uri: mongodb://localhost:27018/moviesdb
   data:
     mongodb:
-      uri: mongodb://admin:pass@localhost:27018/
+      database: moviesdb
+      port: 27018
+      host: localhost
+
 
   main:
     allow-circular-references: true
