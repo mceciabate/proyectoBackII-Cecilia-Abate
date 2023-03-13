@@ -69,7 +69,7 @@ management:
             client-id: api-gateway
             client-secret: uaSiIS1Yc8neUsOba9f0oiSSY9PxJo6h
             scope: openid
-            redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
+            redirect-uri: http://localhost:8080/login/
 app:
   cors:
     allowed-origins: http://localhost:3000

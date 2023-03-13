@@ -17,8 +17,9 @@ public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfig
   protected void configure(HttpSecurity http) throws Exception {
     http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(new KeyCloakJwtAuthenticationConverter());
     http.cors().and().csrf().disable()
-                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().anyRequest().authenticated();
-    //http.authorizeRequests().antMatchers("/actuator/**").permitAll();
+                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and().authorizeRequests().anyRequest().authenticated();
+    http.authorizeRequests().antMatchers("/actuator/**").permitAll();
   }
   @Bean
   public JwtDecoder jwtDecoder() {
