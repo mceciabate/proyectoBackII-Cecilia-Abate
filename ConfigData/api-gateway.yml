@@ -44,8 +44,8 @@ spring:
            uri: lb://api-movies
            predicates:
               - Path=/api/v1/movies/**
-           filters:
-              - StripPrefix=2
+#           filters:
+#              - StripPrefix=2
          - id: msusers
            uri: lb://api-users
            predicates:
