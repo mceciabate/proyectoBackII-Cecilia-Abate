@@ -8,7 +8,7 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://localhost:8085/realms/DH/api-gateway
+            issuer-uri: http://localhost:8085/realms/DH
             user-name-atribute: preferred_username
             jwk-set-uri: http://localhost:8085/realms/DH/protocol/openid-connect/certs
         registration:
