@@ -5,6 +5,7 @@ import com.digitalmedia.users.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,20 +15,34 @@ public class UserServiceImpl implements IUserService {
   private final UserRepository userRepository;
 
 
-  @Override
-  public User validateAndGetUserExtra(String username) {
-    return userRepository.validateAndGetUser(username);
+  public List<User> findByFirstName(String firstName){
+
+    return userRepository.findByFirstName(firstName);
   }
 
-  @Override
-  public Optional<User> getUserExtra(String username) {
-    return userRepository.getUserExtra(username);
+  public Optional<User> findByID(String id){
+    return userRepository.findById(id);
   }
 
-  @Override
-  public User saveUserExtra(User user) {
-    return userRepository.saveUserExtra(user);
+  public User updateNacionalidad(String id, String nacionalidad){
+    return userRepository.updateNacionality(id, nacionalidad);
   }
+
+
+//  @Override
+//  public User validateAndGetUserExtra(String username) {
+//    return userRepository.validateAndGetUser(username);
+//  }
+//
+//  @Override
+//  public Optional<User> getUserExtra(String username) {
+//    return userRepository.getUserExtra(username);
+//  }
+//
+//  @Override
+//  public User saveUserExtra(User user) {
+//    return userRepository.saveUserExtra(user);
+//  }
 
 
 }
