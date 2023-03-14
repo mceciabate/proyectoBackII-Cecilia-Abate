@@ -10,6 +10,8 @@ import com.digitalmedia.movies.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +42,7 @@ public class MoviesController {
     @GetMapping
     //@PreAuthorize("hasAnyRole('ROLE_user', 'ROLE_admin') AND hasAuthority('SCOPE_digital') AND hasAnyAuthority('GROUP_/Empleados/Departamento RH', 'GROUP_/Usuarios')")
     @PreAuthorize("hasAnyRole('ROLE_user', 'ROLE_admin')" )
-    public List<MovieDto> getMovies() {
+    public List<MovieDto> getMovies(@AuthenticationPrincipal Jwt jwt) {
         return movieService.getMovies().stream()
                 .map(movieMapper::toMovieDto)
                 .collect(Collectors.toList());
@@ -59,7 +61,7 @@ public class MoviesController {
     @PostMapping
     //@PreAuthorize("hasRole('ROLE_admin') AND hasAuthority('SCOPE_digital') AND hasAuthority('SCOPE_edicion') AND hasAuthority('GROUP_/Empleados')")
     @PreAuthorize("hasRole('ROLE_admin')")
-    public MovieDto createMovie(@Valid @RequestBody CreateMovieRequest createMovieRequest) {
+    public MovieDto createMovie(@Valid @RequestBody CreateMovieRequest createMovieRequest, @AuthenticationPrincipal Jwt jwt) {
         Movie movie = movieMapper.toMovie(createMovieRequest);
         movie = movieService.saveMovie(movie);
         return movieMapper.toMovieDto(movie);
