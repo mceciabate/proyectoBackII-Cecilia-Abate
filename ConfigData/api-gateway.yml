@@ -54,8 +54,8 @@ spring:
               - Path=/api/v1/users/**
       default filters:
               - TokenRelay
-              - TokenRelay=
-              - Method=GET,POST, PUT
+#              - TokenRelay=
+#              - Method=GET,POST, PUT
               - StripPrefix=1
 
 
