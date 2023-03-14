@@ -41,19 +41,19 @@ spring:
 #            redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
   cloud:
     gateway:
-      default-filters:
-        - TokenRelay
       routes:
          - id: msmovies
            uri: lb://api-movies
            predicates:
               - Path=/api/v1/movies/**
-#           filters:
-#              - StripPrefix=2
+           filters:
+              - TokenRelay=
          - id: msusers
            uri: lb://api-users
            predicates:
               - Path=/api/v1/users/**
+           filters:
+              - TokenRelay=
       discovery:
         locator:
           enabled: true
