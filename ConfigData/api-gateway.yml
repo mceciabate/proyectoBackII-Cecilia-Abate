@@ -54,6 +54,8 @@ spring:
               - Path=/api/v1/users/**
            filters:
               - TokenRelay=
+              - RemoveRequestHeader=Cookie
+
       discovery:
         locator:
           enabled: true
