@@ -2,19 +2,24 @@ package com.digitalmedia.users.controller;
 
 import com.digitalmedia.users.model.User;
 import com.digitalmedia.users.service.UserServiceImpl;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@RequiredArgsConstructor
+
 @RestController
 //@RequestMapping("/users")
 @RequestMapping("/api/v1/users")
 public class UserController {
+
+
   private final UserServiceImpl userService;
- //TODO  estos dos endpoints funcionaran cuando este configurada la seguridad en el proyecto
+
+  public UserController(UserServiceImpl userService) {
+    this.userService = userService;
+  }
+  //TODO  estos dos endpoints funcionaran cuando este configurada la seguridad en el proyecto
 
   /*@GetMapping("/me")
   public User getUserExtra(Principal principal) {
@@ -44,7 +49,7 @@ public class UserController {
     return userService.findByID(id);
   }
 
-  @GetMapping("/update}")
+  @PutMapping("/nacionUpdate")
   public User updateNacionality(@RequestParam   String id, @RequestParam String nacionalidad){
     return userService.updateNacionalidad(id, nacionalidad);
   }

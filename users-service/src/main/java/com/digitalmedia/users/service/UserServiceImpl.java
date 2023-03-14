@@ -1,7 +1,7 @@
 package com.digitalmedia.users.service;
 
 import com.digitalmedia.users.model.User;
-import com.digitalmedia.users.repository.UserRepository;
+import com.digitalmedia.users.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +10,9 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl {
 
-  private final UserRepository userRepository;
+  private final IUserRepository userRepository;
 
 
   public List<User> findByFirstName(String firstName){
@@ -25,7 +25,7 @@ public class UserServiceImpl implements IUserService {
   }
 
   public User updateNacionalidad(String id, String nacionalidad){
-    return userRepository.updateNacionality(id, nacionalidad);
+    return userRepository.updateNationality(id, nacionalidad);
   }
 
 

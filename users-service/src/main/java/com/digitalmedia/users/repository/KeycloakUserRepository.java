@@ -4,7 +4,9 @@ import com.digitalmedia.users.model.User;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.UserResource;
 import org.keycloak.representations.idm.UserRepresentation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -13,10 +15,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 @Repository
-
 public class KeycloakUserRepository implements IUserRepository {
-
+    @Autowired
     private Keycloak keycloackClient;
 
     @Value("${dh.keycloak.realm}")
