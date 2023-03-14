@@ -48,13 +48,14 @@ spring:
               - Path=/api/v1/movies/**
            filters:
               - TokenRelay=
+              - Method=GET,POST, PUT
          - id: msusers
            uri: lb://api-users
            predicates:
               - Path=/api/v1/users/**
            filters:
               - TokenRelay=
-              - RemoveRequestHeader=Cookie
+
 
       discovery:
         locator:

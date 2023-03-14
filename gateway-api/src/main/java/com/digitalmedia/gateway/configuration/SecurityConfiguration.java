@@ -10,8 +10,11 @@ import org.springframework.security.oauth2.client.registration.ReactiveClientReg
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @RequiredArgsConstructor
 @Configuration
+
 public class SecurityConfiguration {
 
 
@@ -27,8 +30,8 @@ public class SecurityConfiguration {
                 .anyExchange()
                 .authenticated()
                 .and()
-                .oauth2Login() // to redirect to oauth2 login page.
-                .and().csrf().disable()
+                .oauth2Login(withDefaults()); // to redirect to oauth2 login page.
+                 http.csrf().disable()
                 .logout()
                 .logoutSuccessHandler(oidcServerLogoutSuccessHandler());
 

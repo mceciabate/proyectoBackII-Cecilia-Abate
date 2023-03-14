@@ -15,20 +15,21 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+
+//    protected void configure(HttpSecurity http) throws Exception {
+//    http.authorizeRequests(authorize -> authorize.anyRequest().authenticated())
+//            .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+//  }
+
+
+  @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests(authorize -> authorize.anyRequest().authenticated())
-            .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
-  }
-
-
-//  @Override
-//  protected void configure(HttpSecurity http) throws Exception {
-//    http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(new KeyCloakJwtAuthenticationConverter());
-//    http.cors().and().csrf().disable()
-//
-//                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                    .and().authorizeRequests().anyRequest().authenticated();
-//}
+        http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(new KeyCloakJwtAuthenticationConverter());
+        http.cors().and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeRequests().anyRequest().authenticated();
+}
 
   @Bean
   public JwtDecoder jwtDecoder() {
