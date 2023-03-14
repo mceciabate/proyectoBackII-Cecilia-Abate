@@ -1,9 +1,9 @@
 dh:
   keycloak:
-    serverUrl: http://localhost:8085/
-    realm: DH
-    clientId: api-gateway
-    clientSecret: uaSiIS1Yc8neUsOba9f0oiSSY9PxJo6h
+    serverUrl: ${serverUrl:${http://localhost:8085/}}
+    realm: ${realm:${DH}}
+    clientId: ${clientId:${api-gateway}}
+    clientSecret: ${clientSecret:${uaSiIS1Yc8neUsOba9f0oiSSY9PxJo6h}}
 
 
 
