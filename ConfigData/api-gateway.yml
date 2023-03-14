@@ -46,16 +46,17 @@ spring:
            uri: lb://api-movies
            predicates:
               - Path=/api/v1/movies/**
-           filters:
-              - TokenRelay=
-              - Method=GET,POST, PUT
-              - StripPrefix=1
+
+
          - id: msusers
            uri: lb://api-users
            predicates:
               - Path=/api/v1/users/**
       default filters:
               - TokenRelay
+              - TokenRelay=
+              - Method=GET,POST, PUT
+              - StripPrefix=1
 
 
       discovery:
