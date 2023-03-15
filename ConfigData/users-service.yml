@@ -23,9 +23,9 @@ management:
     env:
       enabled: true
     app:
-      name: api movies
+      name: api usuarios
       version: 1.0.0
-      description: Películas
+      description: Usuarios
 
 
   springdoc:
