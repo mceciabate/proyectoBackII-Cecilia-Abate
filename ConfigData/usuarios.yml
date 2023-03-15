@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: api-users
+    name: usuarios
 eureka:
   client:
     registerWithEureka: true
@@ -14,7 +14,6 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${random.int}
-
 management:
   endpoints:
     web:
@@ -24,9 +23,10 @@ management:
     env:
       enabled: true
     app:
-      name: api users
+      name: api movies
       version: 1.0.0
-    description: Usuarios
+      description: Películas
+
 
   springdoc:
     show-actuator: true

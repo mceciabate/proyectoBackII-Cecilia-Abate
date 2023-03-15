@@ -1,6 +1,6 @@
 spring:
   application:
-    name: api-users
+    name: usuarios
   cloud:
     config:
       enabled: true
