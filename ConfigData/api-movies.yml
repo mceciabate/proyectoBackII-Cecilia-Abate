@@ -62,7 +62,7 @@ management:
       client:
         provider:
           keycloak:
-            jwk-set-uri: http://localhost:8085/realms/DH/protocol/openid-connect/certs
+#            jwk-set-uri: http://localhost:8085/realms/DH/protocol/openid-connect/certs
             issuer-uri: http://localhost:8085/realms/DH
         registration:
           keycloak:
