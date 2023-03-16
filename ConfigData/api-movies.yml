@@ -69,8 +69,8 @@ management:
             client-id: api-gateway
             client-secret: uaSiIS1Yc8neUsOba9f0oiSSY9PxJo6h
             scope: openid, groups, roles
-#            redirect-uri: http://localhost:8080/login/
-            redirect-uri: http://localhost:8080/
+            redirect-uri: http://localhost:8080/login/
+#            redirect-uri: http://localhost:8080/
 app:
   cors:
     allowed-origins: http://localhost:3000
