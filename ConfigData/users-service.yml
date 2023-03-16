@@ -50,7 +50,7 @@ management:
       password: pass
       username: admin
       authentication-database: admin
-      database: moviesdb
+      database: usersdb
 
   main:
     allow-circular-references: true

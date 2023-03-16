@@ -49,11 +49,11 @@ spring:
 
 
          - id: msusers
-           uri: lb://api-users
+           uri: lb://users-service
            predicates:
               - Path=/api/v1/users/**
       default filters:
-              - TokenRelay
+              - TokenRelay=
 #              - TokenRelay=
 #              - Method=GET,POST, PUT
               - StripPrefix=1

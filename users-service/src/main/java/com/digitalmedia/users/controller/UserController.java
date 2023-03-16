@@ -47,6 +47,7 @@ public class UserController {
   @GetMapping("/id/{id}")
   public Optional<User> findById(@PathVariable  String id){
     return userService.findByID(id);
+
   }
 
   @PutMapping("/nacionUpdate")
