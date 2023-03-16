@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 //@RequestMapping("/users")
-@RequestMapping("/api/v1/users")
+@RequestMapping("/users")
 public class UserController {
 
 

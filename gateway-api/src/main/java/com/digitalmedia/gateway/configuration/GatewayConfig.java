@@ -15,8 +15,8 @@ public class GatewayConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("msmovies", r -> r.path("/api/v1/movies/**").filters(f -> f.filter(filterFactory.apply())).uri("lb://api-movies"))
-                .route("msusers", r -> r.path("/api/v1/users/**").filters(f -> f.filter(filterFactory.apply())).uri("lb://users-service"))
+                .route("msmovies", r -> r.path("/movies/**").filters(f -> f.filter(filterFactory.apply())).uri("lb://api-movies"))
+                .route("msusers", r -> r.path("/users/**").filters(f -> f.filter(filterFactory.apply())).uri("lb://users-service"))
                 .build();
     }
 }

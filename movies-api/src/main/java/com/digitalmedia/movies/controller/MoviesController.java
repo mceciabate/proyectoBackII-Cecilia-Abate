@@ -33,7 +33,7 @@ import static org.springframework.security.authorization.AuthorityReactiveAuthor
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/movies/")
+@RequestMapping("/movies")
 public class MoviesController {
 
     private final MovieService movieService;
