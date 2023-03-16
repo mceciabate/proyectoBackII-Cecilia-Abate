@@ -16,7 +16,7 @@ public class GatewayConfig {
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("msmovies", r -> r.path("/api/v1/movies/**").filters(f -> f.filter(filterFactory.apply())).uri("lb://api-movies"))
-                .route("msusers", r -> r.path("/api/v1/users/**").filters(f -> f.filter(filterFactory.apply())).uri("lb://api-users"))
+                .route("msusers", r -> r.path("/api/v1/users/**").filters(f -> f.filter(filterFactory.apply())).uri("lb://users-service"))
                 .build();
     }
 }
