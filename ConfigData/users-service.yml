@@ -40,7 +40,14 @@ management:
          authorization-grant-type: client_credentials
          redirect-uri: "http://localhost:8080/realms/DH/protocol/openid-connect/token"
 
-
+  data:
+    mongodb:
+      host: localhost
+      port: 27018
+      password: pass
+      username: admin
+      authentication-database: admin
+      database: usersdb
 
   springdoc:
     show-actuator: true
