@@ -68,7 +68,7 @@ management:
           keycloak:
             client-id: api-gateway
             client-secret: uaSiIS1Yc8neUsOba9f0oiSSY9PxJo6h
-            scope: openid, groups, roles
+            scope: openid
             redirect-uri: http://localhost:8080/login/
 #            redirect-uri: http://localhost:8080/
 app:

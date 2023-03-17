@@ -26,6 +26,20 @@ management:
       name: api usuarios
       version: 1.0.0
       description: Usuarios
+  security:
+     oauth2:
+       client:
+         provider:
+           keycloack-provider:
+              issuer-uri: http://localhost:8085/realms/DH
+     registration:
+       api-gateway-service:
+         provider: keycloak-provider
+         client-id: api-gateway
+         client-secret: 6tDvZ6rTk70D4ech8bGhKPWdLvhoYUiE
+         authorization-grant-type: client_credentials
+         redirect-uri: "http://localhost:8080/realms/DH/protocol/openid-connect/token"
+
 
 
   springdoc:
@@ -33,6 +47,7 @@ management:
     swagger-ui:
       groups-order: DESC
       disable-swagger-default-url: true
+
 
 
   zipkin:
@@ -59,55 +74,4 @@ app:
     allowed-origins: http://localhost:3000
 
 
-
-
-
-#resilience4j.circuitbreaker:
-#  instances:
-#    clientMovie:
-#      allowHealthIndicatorToFail: false
-#      registerHealthIndicator: true
-#      slidingWindowSize: 5
-#      permittedNumberOfCallsInHalfOpenState: 3
-#      slidingWindowType: TIME_BASED
-#      minimumNumberOfCalls: 20
-#      waitDurationInOpenState: 50s
-#      failureRateThreshold: 50
-#      eventConsumerBufferSize: 10
-#    clientSerie:
-#      allowHealthIndicatorToFail: false
-#      registerHealthIndicator: true
-#      slidingWindowSize: 5
-#      permittedNumberOfCallsInHalfOpenState: 3
-#      slidingWindowType: TIME_BASED
-#      minimumNumberOfCalls: 20
-#      waitDurationInOpenState: 50s
-#      failureRateThreshold: 50
-#      eventConsumerBufferSize: 10
-
-
-#      recordFailurePredicate: io.github.robwin.exception.RecordFailurePredicate
-
-#resilience4j.retry:
-#  instances:
-#    clientMovie:
-#      maxAttempts: 3
-#      waitDuration: 10s
-#      enableExponentialBackoff: true
-#      exponentialBackoffMultiplier: 2
-#      retryExceptions:
-#        - java.net.ConnectException
-#        - org.springframework.web.client.HttpServerErrorException
-#        - java.io.IOException
-#    clientSerie:
-#      maxAttempts: 3
-#      waitDuration: 10s
-#      enableExponentialBackoff: true
-#      exponentialBackoffMultiplier: 2
-#      retryExceptions:
-#        - java.net.ConnectException
-#        - org.springframework.web.client.HttpServerErrorException
-#        - java.io.IOException
-#      ignoreExceptions:
-#        - io.github.robwin.exception.BusinessException
 

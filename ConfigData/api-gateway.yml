@@ -23,22 +23,7 @@ spring:
             client-secret: uaSiIS1Yc8neUsOba9f0oiSSY9PxJo6h
             authorization-grant-type: authorization_code
             redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
-#spring:
-#  application:
-#    name: api-gateway
-#  security:
-#    oauth2:
-#      client:
-#        provider:
-#          keycloack-provider:
-#            issuer-uri: http://localhost:8085/realms/DH
-#    registration:
-#      api-gateway-service:
-#            provider: keycloak-provider
-#            client-id: api-gateway
-#            client-secret: 6tDvZ6rTk70D4ech8bGhKPWdLvhoYUiE
-#            authorization-grant-type: authorization_code
-#            redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
+
   cloud:
     gateway:
       routes:
