@@ -38,7 +38,7 @@ management:
          client-id: api-gateway
          client-secret: 6tDvZ6rTk70D4ech8bGhKPWdLvhoYUiE
          authorization-grant-type: client_credentials
-         redirect-uri: "http://localhost:8080/realms/DH/protocol/openid-connect/token"
+         token-uri: "http://localhost:8080/realms/DH/protocol/openid-connect/token"
 
   springdoc:
     show-actuator: true
