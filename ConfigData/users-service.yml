@@ -40,22 +40,11 @@ management:
          authorization-grant-type: client_credentials
          redirect-uri: "http://localhost:8080/realms/DH/protocol/openid-connect/token"
 
-  data:
-    mongodb:
-      host: localhost
-      port: 27018
-      password: pass
-      username: admin
-      authentication-database: admin
-      database: usersdb
-
   springdoc:
     show-actuator: true
     swagger-ui:
       groups-order: DESC
       disable-swagger-default-url: true
-
-
 
   zipkin:
     baseUrl: http://localhost:9411/
@@ -65,6 +54,7 @@ management:
     password: guest
     host: localhost
     port: 5672
+
   data:
     mongodb:
       host: localhost
