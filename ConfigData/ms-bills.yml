@@ -1,7 +1,6 @@
 server:
-  port: ${PORT:${SERVER_PORT:0}}
+  port: ${PORT:8090}
 
-#idRandom: ${random.value}
 spring:
   application:
     name: ms-bills
@@ -51,16 +50,17 @@ info:
 
   main:
     allow-circular-references: true
-    security:
-      oauth2:
-        client:
-          provider:
-            keycloak:
-              issuer-uri: http://localhost:8085/realms/digitalHouse
-          registration:
-            keycloak:
-              client-id: oldc-postman
-              client-secret: T8kVwiojBQ8r7LShaUYXdgSFHhOvYCfZ
+
+  security:
+     oauth2:
+       client:
+         provider:
+           keycloak:
+             issuer-uri: http://localhost:8085/realms/DH
+           registration:
+             keycloak:
+              client-id: interno
+              client-secret: UI3yRJN8gzxTONvWuuq7z5NIWDSUgnn5
               scope: openid
               redirect-uri: http://localhost:8082
 app:
