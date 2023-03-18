@@ -39,7 +39,7 @@ spring:
            predicates:
               - Path=/users/**
       default filters:
-              - TokenRelay=
+#              - TokenRelay=
 #              - TokenRelay=
 #              - Method=GET,POST, PUT
 #              - StripPrefix=1
