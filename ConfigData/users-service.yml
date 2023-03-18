@@ -40,6 +40,7 @@ management:
          client-id: api-gateway
          client-secret: 6tDvZ6rTk70D4ech8bGhKPWdLvhoYUiE
          authorization-grant-type: client_credentials
+         scope: openid
 #         token-uri: "http://localhost:8080/realms/DH/protocol/openid-connect/token"
 
   springdoc:
