@@ -41,7 +41,7 @@ spring:
               - TokenRelay=
 #              - TokenRelay=
 #              - Method=GET,POST, PUT
-              - StripPrefix=1
+#              - StripPrefix=1
 
 
       discovery:

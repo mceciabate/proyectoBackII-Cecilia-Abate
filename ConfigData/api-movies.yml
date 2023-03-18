@@ -36,15 +36,7 @@ management:
   zipkin:
     baseUrl: http://localhost:9411/
     enabled: true
-#  rabbitmq:
-#    username: guest
-#    password: guest
-#    host: localhost
-#    port: 5672
 
-#  data:
-#    mongodb:
-#      uri: mongodb://admin:pass@localhost:27018/
   data:
     mongodb:
      host: localhost

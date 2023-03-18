@@ -31,7 +31,9 @@ management:
        client:
          provider:
            keycloack-provider:
-              issuer-uri: http://localhost:8085/realms/DH
+             jwt:
+                issuer-uri: http://localhost:8085/realms/DH
+#              jwk-set-uri: http://localhost:8085/realms/DH/protocol/openid-connect/certs
      registration:
        api-gateway-service:
          provider: keycloak-provider
