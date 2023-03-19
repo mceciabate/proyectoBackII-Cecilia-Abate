@@ -26,7 +26,7 @@ spring:
   cloud:
     gateway:
       default-filters:
-        - TokenRelay
+#        - TokenRelay
       discovery:
         locator:
           enabled: true
