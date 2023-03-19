@@ -31,10 +31,10 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: users-service
-          uri: lb://users-service
-          predicates:
-            - Path=/users/**
+#        - id: users-service
+#          uri: lb://users-service
+#          predicates:
+#            - Path=/users/**
         - id: api-movies
           uri: lb://api-movies
           predicates:
