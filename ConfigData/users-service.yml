@@ -33,11 +33,11 @@ management:
         provider:
           keycloak:
             issuer-uri: http://localhost:8085/realms/DH
-            jwk-set-uri: http://localhost:8085/realms/DH/protocol/openid-connect/token
+
           registration:
             keycloak:
-              client-id: admin-cli
-              client-secret: QuhE014lLH9y66Mlxb9aa9PzO3OZ1sRO
+              client-id: usuarios
+              client-secret: 8YnE9JfYvkSEiwiogZZFxvs02LjTTnyH
 #              scope: openid
               redirect-uri: http://localhost:8082
 #  security:
