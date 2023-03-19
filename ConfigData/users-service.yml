@@ -37,8 +37,8 @@ management:
             provider: keycloak-provider
             client-id: usuarios
             client-secret: 8YnE9JfYvkSEiwiogZZFxvs02LjTTnyH
-            authorization-grant-type: authorization_code
-            redirect-uri: 'http://localhost:8085/login/oauth2/code/keycloak'
+#            authorization-grant-type: authorization_code
+#            redirect-uri: 'http://localhost:8085/login/oauth2/code/keycloak'
 
   springdoc:
     show-actuator: true
