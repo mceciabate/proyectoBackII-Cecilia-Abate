@@ -40,7 +40,6 @@ public class MoviesController {
     private final MovieMapper movieMapper;
 
     @GetMapping
-    //@PreAuthorize("hasAnyRole('ROLE_user', 'ROLE_admin') AND hasAuthority('SCOPE_digital') AND hasAnyAuthority('GROUP_/Empleados/Departamento RH', 'GROUP_/Usuarios')")
     //solo los usuarios podran ver peliculas
     @PreAuthorize("hasAnyRole('ROLE_user')" )
     public List<MovieDto> getMovies(@AuthenticationPrincipal Jwt jwt) {

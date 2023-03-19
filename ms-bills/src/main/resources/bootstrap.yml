@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ms-bill
+    name: ms-bills
   cloud:
     config:
       enabled: true

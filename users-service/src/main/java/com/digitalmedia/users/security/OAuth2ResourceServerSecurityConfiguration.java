@@ -1,7 +1,6 @@
 package com.digitalmedia.users.security;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,7 +21,7 @@ public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfig
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().anyRequest().authenticated();
 }
-//TODO REVISAR SI ESTO NO ES CON GATEWAY
+
   @Bean
   public JwtDecoder jwtDecoder() {
     return NimbusJwtDecoder.withJwkSetUri("http://localhost:8085/realms/DH/protocol/openid-connect/certs").build();

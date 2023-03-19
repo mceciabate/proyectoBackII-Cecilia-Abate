@@ -15,39 +15,25 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+//Solo los administradores podrán consumir estos endpoints
 public class UserController {
     @Autowired
     private  KeycloakUserRepository service;
 
+    @GetMapping
+    @PreAuthorize("hasRole('ROLE_admin')")
+    public List<User> getAll(){
+        return service.getAll();
 
-//    @GetMapping("/find/{id}")
-//    public ResponseEntity<User> findById(@PathVariable String id){
-//        return ResponseEntity.ok().body(service.findUserById(id));
-//    }
-
+    }
+    //endpoint que consume Feing en Bills
     @GetMapping("/name/{nombreUser}")
+    @PreAuthorize("hasRole('ROLE_admin')")
     public User findByName(@PathVariable("nombreUser") String name){
         return service.findByUsername(name);
     }
 
 
-//    @GetMapping("/admin")
-//    @PreAuthorize("hasAuthority('ROLE_admin')")
-//    public List<UserDTO> getAllNonAdminUsers(){
-//      return userService.findAllNonAdminUsers();
-//    }
-//
-//    @GetMapping("/admin/{username}")
-//    @PreAuthorize("hasAuthority('ROLE_admin')")
-//    public User getUserByUsername(@PathVariable("username") String username){
-//      return userService.findByUsername(username);
-//    }
-//
-//    @GetMapping("/findUsername/{username}")
-//    public User getByUsername(@PathVariable("username") String username){
-//      return userService.findByUsername(username);
-//
-//    }
 
 }
 

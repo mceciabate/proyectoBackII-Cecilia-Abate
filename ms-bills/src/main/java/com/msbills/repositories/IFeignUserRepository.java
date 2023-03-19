@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name="users-service", url = "http://localhost:8080/", configuration = FeignInterceptor.class)
 public interface IFeignUserRepository {
 
-    @GetMapping("/users/findUsername/{username}")
+    @GetMapping("/users/name/{username}")
     User findByUsername(@PathVariable("username") String username);
 
 }

@@ -36,43 +36,7 @@ spring:
           uri: lb://api-movies
           predicates:
             - Path=/movies/**
-#  cloud:
-#    gateway:
-#      routes:
-#         - id: msmovies
-#           uri: lb://api-movies
-#           predicates:
-#              - Path=/movies/**
-#
-#
-#         - id: msusers
-#           uri: lb://users-service
-#           predicates:
-#              - Path=/users/**
-#      default filters:
-##              - TokenRelay=
-##              - TokenRelay=
-##              - Method=GET,POST, PUT
-##              - StripPrefix=1
 
-#  cloud:
-#    gateway:
-#      discovery:
-#        locator:
-#          enabled: true
-#      routes:
-#        - id: msmovies
-#          uri: lb://api-movies
-#          predicates:
-#            - Path=/api/v1/movies/**
-#        - id: msbills
-#          uri: lb://api-bills
-#          predicates:
-#            - Path=/api/v1/bills/**
-#        - id: msusers
-#          uri: lb://api-users
-#          predicates:
-#            - Path=/api/v1/users/**
 
 info:
   app:

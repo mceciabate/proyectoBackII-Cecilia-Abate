@@ -17,11 +17,6 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-//    protected void configure(HttpSecurity http) throws Exception {
-//    http.authorizeRequests(authorize -> authorize.anyRequest().authenticated())
-//            .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
-//  }
-
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {

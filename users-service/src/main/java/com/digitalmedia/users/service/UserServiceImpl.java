@@ -21,31 +21,18 @@ public class UserServiceImpl {
   @Autowired
   private KeycloakUserRepository keycloakRepository;
 
-//  public void UserService(SubscriptionRepository subscriptionRepository) {
-//    this.subscriptionRepository = subscriptionRepository;
-//    this.userRepository = List.of(new User("1a", "Tomas", "Pereyra", "tomas.pereyra@digitalhouse.com"));
-//  }
-//
-//  public User findById(Integer id){
-//    User user = userRepository.stream().filter(_user -> Objects.equals(_user.getId(), id)).findFirst().orElse(null);
-//    SubscriptionDTO subscriptionDTO = subscriptionRepository.findByUserId(id);
-//    if (user != null)
-//      user.setSubscription(subscriptionDTO);
-//
-//    return user;
-//  }
 
   public User findByUsername(String username){
     return keycloakRepository.findByUsername(username);
   }
 
-//  public User findUserById(String id){
-//    return keycloakRepository.findById(id);
-//  }
-//
-//  public List<UserDTO> findAllNonAdminUsers(){
-//    return keycloakRepository.findAll();
-//  }
+  public User findUserById(String id){
+    return keycloakRepository.findById(id);
+  }
+
+  public List<User> getAll(){
+    return keycloakRepository.getAll();
+  }
 
 
 
