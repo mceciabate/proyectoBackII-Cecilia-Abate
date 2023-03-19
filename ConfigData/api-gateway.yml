@@ -9,45 +9,54 @@ spring:
         provider:
           keycloak:
             issuer-uri: http://localhost:8085/realms/DH
-            jwk-set-uri: http://localhost:8085/realms/DH/protocol/openid-connect/certs
-            authorization-uri: http://localhost:8085/realms/DH/protocol/openid-connect/auth
-            token-uri: http://localhost:8085/realms/DH/protocol/openid-connect/token
-            user-info-uri: http://localhost:8085/realms/DH/protocol/openid-connect/userinfo
-
-
-
+#            jwk-set-uri: http://localhost:8085/realms/DH/protocol/openid-connect/certs
+#            authorization-uri: http://localhost:8085/realms/DH/protocol/openid-connect/auth
+#            token-uri: http://localhost:8085/realms/DH/protocol/openid-connect/token
+#            user-info-uri: http://localhost:8085/realms/DH/protocol/openid-connect/userinfo
         registration:
           gateway-api:
             provider: keycloak
             client-id: api-gateway
             client-secret: uaSiIS1Yc8neUsOba9f0oiSSY9PxJo6h
             authorization-grant-type: authorization_code
-            scope: openid
+#            scope: openid
             redirect-uri: 'http://localhost:8080/login/oauth2/code/keycloak'
+
 
   cloud:
     gateway:
-      routes:
-         - id: msmovies
-           uri: lb://api-movies
-           predicates:
-              - Path=/movies/**
-
-
-         - id: msusers
-           uri: lb://users-service
-           predicates:
-              - Path=/users/**
-      default filters:
-#              - TokenRelay=
-#              - TokenRelay=
-#              - Method=GET,POST, PUT
-#              - StripPrefix=1
-
-
+      default-filters:
+        - TokenRelay
       discovery:
         locator:
           enabled: true
+      routes:
+        - id: users-service
+          uri: lb://users-service
+          predicates:
+            - Path=/users/**
+        - id: api-movies
+          uri: lb://api-movies
+          predicates:
+            - Path=/movies/**
+#  cloud:
+#    gateway:
+#      routes:
+#         - id: msmovies
+#           uri: lb://api-movies
+#           predicates:
+#              - Path=/movies/**
+#
+#
+#         - id: msusers
+#           uri: lb://users-service
+#           predicates:
+#              - Path=/users/**
+#      default filters:
+##              - TokenRelay=
+##              - TokenRelay=
+##              - Method=GET,POST, PUT
+##              - StripPrefix=1
 
 #  cloud:
 #    gateway:
