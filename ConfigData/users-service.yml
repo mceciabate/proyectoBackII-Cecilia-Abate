@@ -26,19 +26,32 @@ management:
       name: api usuarios
       version: 1.0.0
       description: Usuarios
+
   security:
-     oauth2:
-       client:
-         provider:
-           keycloack-provider:
-             issuer-uri: http://localhost:8085/realms/DH
-         registration:
-          users-service:
-            provider: keycloak-provider
-            client-id: usuarios
-            client-secret: 8YnE9JfYvkSEiwiogZZFxvs02LjTTnyH
-#            authorization-grant-type: authorization_code
-#            redirect-uri: 'http://localhost:8085/login/oauth2/code/keycloak'
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8085/realms/DH
+          registration:
+            keycloak:
+              client-id: usuarios
+              client-secret: 8YnE9JfYvkSEiwiogZZFxvs02LjTTnyH
+              scope: openid
+              redirect-uri: http://localhost:8082
+#  security:
+#     oauth2:
+#       client:
+#         provider:
+#           keycloack-provider:
+#             issuer-uri: http://localhost:8085/realms/DH
+#         registration:
+#          users-service:
+#            provider: keycloak-provider
+#            client-id: usuarios
+#            client-secret: 8YnE9JfYvkSEiwiogZZFxvs02LjTTnyH
+##            authorization-grant-type: authorization_code
+##            redirect-uri: 'http://localhost:8085/login/oauth2/code/keycloak'
 
   springdoc:
     show-actuator: true
