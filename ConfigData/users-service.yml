@@ -39,7 +39,7 @@ management:
               client-secret: 8YnE9JfYvkSEiwiogZZFxvs02LjTTnyH
               scope: openid
               authorization-grant-type: client_credentials
-              redirect-uri: 'http://localhost:8085/login/oauth2/code/keycloak'
+              redirect-uri: http://localhost:8080/login/
 #  security:
 #     oauth2:
 #       client:
