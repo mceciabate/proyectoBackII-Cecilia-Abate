@@ -38,7 +38,7 @@ management:
             keycloak:
               client-id: usuarios
               client-secret: 8YnE9JfYvkSEiwiogZZFxvs02LjTTnyH
-#              scope: openid
+              scope: openid
               redirect-uri: http://localhost:8082
 #  security:
 #     oauth2:
