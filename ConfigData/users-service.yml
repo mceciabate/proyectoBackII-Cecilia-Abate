@@ -36,10 +36,9 @@ management:
           registration:
             keycloak:
               client-id: usuarios
-              client-secret: 8YnE9JfYvkSEiwiogZZFxvs02LjTTnyH
+              client-secret: UI3yRJN8gzxTONvWuuq7z5NIWDSUgnn5
               scope: openid
-              authorization-grant-type: client_credentials
-              redirect-uri: http://localhost:8080/login/
+              redirect-uri: http://localhost:8082
 #  security:
 #     oauth2:
 #       client:
