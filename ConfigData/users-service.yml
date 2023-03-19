@@ -31,17 +31,14 @@ management:
        client:
          provider:
            keycloack-provider:
-             jwt:
-               issuer-uri: http://localhost:8085/realms/DH
-           #              jwk-set-uri: http://localhost:8085/realms/DH/protocol/openid-connect/certs
+             issuer-uri: http://localhost:8085/realms/DH
          registration:
-          api-gateway-service:
+          users-service:
             provider: keycloak-provider
-            client-id: api-gateway
-            client-secret: uaSiIS1Yc8neUsOba9f0oiSSY9PxJo6h
+            client-id: usuarios
+            client-secret: 8YnE9JfYvkSEiwiogZZFxvs02LjTTnyH
             authorization-grant-type: authorization_code
-            scope: openid
-            redirect-uri: 'http://localhost:8086/login/oauth2/code/keycloak'
+            redirect-uri: 'http://localhost:8085/login/oauth2/code/keycloak'
 
   springdoc:
     show-actuator: true
