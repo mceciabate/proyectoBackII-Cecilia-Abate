@@ -4,18 +4,20 @@ import com.msbills.models.Bill;
 import com.msbills.service.BillService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/bills/")
+@RequestMapping("/bills/")
 @RequiredArgsConstructor
 public class BillController {
 
   private final BillService service;
 
   @GetMapping("/all")
+  @PreAuthorize("hasRole('ROLE_manage-account')")
   public ResponseEntity<List<Bill>> getAll() {
     return ResponseEntity.ok().body(service.getAllBill());
   }

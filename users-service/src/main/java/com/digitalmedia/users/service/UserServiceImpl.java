@@ -1,48 +1,52 @@
 package com.digitalmedia.users.service;
 
 import com.digitalmedia.users.model.User;
-import com.digitalmedia.users.repository.IUserRepository;
+import com.digitalmedia.users.model.dto.UserDTO;
+import com.digitalmedia.users.repository.KeycloakUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl {
 
-  private final IUserRepository userRepository;
+  private List<User> userRepository;
 
 
-  public List<User> findByFirstName(String firstName){
 
-    return userRepository.findByFirstName(firstName);
-  }
+  @Autowired
+  private KeycloakUserRepository keycloakRepository;
 
-  public Optional<User> findByID(String id){
-    return userRepository.findById(id);
-  }
-
-  public User updateNacionalidad(String id, String nacionalidad){
-    return userRepository.updateNationality(id, nacionalidad);
-  }
-
-
-//  @Override
-//  public User validateAndGetUserExtra(String username) {
-//    return userRepository.validateAndGetUser(username);
+//  public void UserService(SubscriptionRepository subscriptionRepository) {
+//    this.subscriptionRepository = subscriptionRepository;
+//    this.userRepository = List.of(new User("1a", "Tomas", "Pereyra", "tomas.pereyra@digitalhouse.com"));
 //  }
 //
-//  @Override
-//  public Optional<User> getUserExtra(String username) {
-//    return userRepository.getUserExtra(username);
+//  public User findById(Integer id){
+//    User user = userRepository.stream().filter(_user -> Objects.equals(_user.getId(), id)).findFirst().orElse(null);
+//    SubscriptionDTO subscriptionDTO = subscriptionRepository.findByUserId(id);
+//    if (user != null)
+//      user.setSubscription(subscriptionDTO);
+//
+//    return user;
+//  }
+
+  public User findByUsername(String username){
+    return keycloakRepository.findByUsername(username);
+  }
+
+//  public User findUserById(String id){
+//    return keycloakRepository.findById(id);
 //  }
 //
-//  @Override
-//  public User saveUserExtra(User user) {
-//    return userRepository.saveUserExtra(user);
+//  public List<UserDTO> findAllNonAdminUsers(){
+//    return keycloakRepository.findAll();
 //  }
+
 
 
 }

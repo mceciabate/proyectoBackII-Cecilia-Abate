@@ -3,7 +3,9 @@ package com.digitalmedia.gateway.configuration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.client.oidc.web.server.logout.OidcClientInitiatedServerLogoutSuccessHandler;
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository;
@@ -14,6 +16,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @RequiredArgsConstructor
 @Configuration
+@EnableWebFluxSecurity
+@EnableReactiveMethodSecurity
 
 public class SecurityConfiguration {
 
@@ -27,10 +31,11 @@ public class SecurityConfiguration {
         http
                 .authorizeExchange()
                 .pathMatchers("/actuator/**").permitAll()
+//                .pathMatchers("/users/**").authenticated()
                 .anyExchange()
                 .authenticated()
                 .and()
-                .oauth2Login(withDefaults()); // to redirect to oauth2 login page.
+                .oauth2Login(); // to redirect to oauth2 login page.
                  http.csrf().disable()
                 .logout()
                 .logoutSuccessHandler(oidcServerLogoutSuccessHandler());

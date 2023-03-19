@@ -8,32 +8,24 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Document(collection = "users")
 public class User {
 
   @Id
-  private String id;
+
   private String username;
-  private String avatar;
-  private String email;
   private String firstName;
   private String lastName;
+  private String email;
 
-  private String nacionalidad;
-
-
-  public User(String id, String username, String avatar, String email, String firstName, String lastName) {
-    this.id = id;
+  public User(String username, String firstName, String lastName, String email) {
     this.username = username;
-    this.avatar = avatar;
-    this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.email = email;
   }
 
 
-  public User(String id, String username, String email, String firstName, String lastName) {
 
-  }
 }
+

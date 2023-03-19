@@ -23,6 +23,7 @@ public class GatewayApiApplication {
   public static void main(String[] args) {
     SpringApplication.run(GatewayApiApplication.class, args);
   }
+
   @GetMapping(value = "/token")
   public Mono<String> getHome(@RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient) {
     return Mono.just(authorizedClient.getAccessToken().getTokenValue());

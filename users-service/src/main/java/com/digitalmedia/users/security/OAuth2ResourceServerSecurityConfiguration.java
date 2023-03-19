@@ -10,16 +10,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
-@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfigurerAdapter {
-
-
-//    protected void configure(HttpSecurity http) throws Exception {
-//    http.authorizeRequests(authorize -> authorize.anyRequest().authenticated())
-//            .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
-//  }
 
 
   @Override
@@ -29,7 +22,7 @@ public class OAuth2ResourceServerSecurityConfiguration extends WebSecurityConfig
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().anyRequest().authenticated();
 }
-
+//TODO REVISAR SI ESTO NO ES CON GATEWAY
   @Bean
   public JwtDecoder jwtDecoder() {
     return NimbusJwtDecoder.withJwkSetUri("http://localhost:8085/realms/DH/protocol/openid-connect/certs").build();

@@ -1,82 +1,81 @@
 package com.digitalmedia.users.repository;
 
+import com.digitalmedia.users.configuration.KeycloakConfiguration;
 import com.digitalmedia.users.model.User;
+import com.digitalmedia.users.model.dto.UserDTO;
 import org.keycloak.admin.client.Keycloak;
-import org.keycloak.admin.client.resource.UserResource;
+import org.keycloak.admin.client.KeycloakBuilder;
+import org.keycloak.representations.idm.GroupRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.*;
+
 
 
 @Repository
-public class KeycloakUserRepository implements IUserRepository {
+public class KeycloakUserRepository {
+
     @Autowired
     private Keycloak keycloackClient;
 
-    @Value("${dh.keycloak.realm}")
-    private String realm;
+
+    public User findByUsername(String username){
 
 
-    @Override
-    public List<User> findByFirstName(String name) {
-        List<UserRepresentation> users = keycloackClient.realm(realm).users().search(name);
-        return users.stream().map(userRepresentation -> toUser(userRepresentation)).collect(Collectors.toList());
-    }
-
-    @Override
-    public Optional<User> findById(String id) {
-        UserRepresentation user = keycloackClient.realm(realm).users().get(id).toRepresentation();
-        return Optional.of(toUser(user));
+        List <UserRepresentation> user;
+        user = keycloackClient.realm("DH").users()
+                .search(username);
+        user.forEach(System.out::println);
+        return fromRepresentationToEntity(user.get(0));
     }
 
 
-    @Override
-    public User updateNationality(String id, String nacionalidad) {
-        UserResource user = keycloackClient.realm(realm).users().get(id);
-        UserRepresentation userRepresentation = user.toRepresentation();
-        Map<String, List<String>> atributos = new HashMap<>();
-        atributos.put("nacionalidad", List.of(nacionalidad));
-        userRepresentation.setAttributes(atributos);
-        user.update(userRepresentation);
-        return toUser(userRepresentation);
+    public User findById(String id) {
+        List<UserRepresentation> usuarios = keycloackClient.realm("DH").users().search(id);
 
-
+        return fromRepresentationToEntity(usuarios.get(0));
+    }
+    private UserDTO fromRepresentationToDTO(UserRepresentation userRepresentation) {
+        return new UserDTO(userRepresentation.getUsername(),userRepresentation.getEmail());
     }
 
-//    @Override
-//    public User saveUserExtra(User userExtra) {
-//        return null;
-//    }
+    private User fromRepresentationToEntity(UserRepresentation userRepresentation) {
+        return new User(userRepresentation.getUsername(),userRepresentation.getFirstName(),userRepresentation.getLastName(),userRepresentation.getEmail());
+    }
+
+    //    public List<UserDTO> findAll(){
 //
-//    @Override
-//    public User validateAndGetUser(String username) {
-//        return null;
-//    }
+//        List<GroupRepresentation> groupRepresentations = keycloackClient.realm(realm).groups().groups();
 //
-//    @Override
-//    public Optional<User> getUserExtra(String username) {
-//        return Optional.empty();
+//        List<UserRepresentation> allUserRepresentations = new ArrayList<>();
+//        List<UserRepresentation> adminUserRepresentations = new ArrayList<>();
+//        allUserRepresentations=keycloackClient.realm(realm).users().list();
+//
+//        for(GroupRepresentation g: groupRepresentations) {
+//            if (g.getName().contains("admin"))
+//            {adminUserRepresentations=keycloackClient.realm(realm)
+//                    .groups()
+//                    .group(g.getId())
+//                    .members();
+//                break;
+//            }
+//        }
+//
+//        List<UserRepresentation> finalUser = allUserRepresentations;
+//
+//        for(int f=0; f<allUserRepresentations.size();f++)
+//            for(int i=0;i<adminUserRepresentations.size();i++)
+//                if(allUserRepresentations.get(f).getId().contains(adminUserRepresentations.get(i).getId()))
+//                    finalUser.remove(f);
+//
+//
+//        List<UserDTO> userDTOList = finalUser.stream().map(this::fromRepresentationToDTO).collect(Collectors.toList());
+//
+//        return userDTOList;
 //    }
 
-
-    private User toUser(UserRepresentation userRepresentation){
-        String nationality = null;
-        try {
-            nationality = userRepresentation.getAttributes().get("nacionalidad").get(0);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return new  User(userRepresentation.getId(), userRepresentation.getUsername(),   userRepresentation.getEmail(), userRepresentation.getFirstName(), userRepresentation.getLastName());
-
-    }
 }

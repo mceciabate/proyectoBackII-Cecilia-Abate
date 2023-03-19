@@ -1,66 +1,53 @@
 package com.digitalmedia.users.controller;
 
 import com.digitalmedia.users.model.User;
+import com.digitalmedia.users.model.dto.UserDTO;
+import com.digitalmedia.users.repository.KeycloakUserRepository;
 import com.digitalmedia.users.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @RestController
-//@RequestMapping("/users")
 @RequestMapping("/users")
 public class UserController {
+    @Autowired
+    private  KeycloakUserRepository service;
 
 
-  private final UserServiceImpl userService;
+//    @GetMapping("/find/{id}")
+//    public ResponseEntity<User> findById(@PathVariable String id){
+//        return ResponseEntity.ok().body(service.findUserById(id));
+//    }
 
-  public UserController(UserServiceImpl userService) {
-    this.userService = userService;
-  }
-  //TODO  estos dos endpoints funcionaran cuando este configurada la seguridad en el proyecto
+    @GetMapping("/name/{nombreUser}")
+    public User findByName(@PathVariable("nombreUser") String name){
+        return service.findByUsername(name);
+    }
 
-  /*@GetMapping("/me")
-  public User getUserExtra(Principal principal) {
-    return userService.validateAndGetUserExtra(principal.getName());
-  }*/
 
-//  @GetMapping("/me")
-//  public User getUserExtra(@RequestParam String principal) {
-//    return userService.validateAndGetUserExtra(principal);
-//  }
+//    @GetMapping("/admin")
+//    @PreAuthorize("hasAuthority('ROLE_admin')")
+//    public List<UserDTO> getAllNonAdminUsers(){
+//      return userService.findAllNonAdminUsers();
+//    }
 //
-//  @PostMapping("/me")
-//  public User saveUserExtra(@Valid @RequestBody UserRequest updateUserRequest, @RequestParam(value = "principal") String principal) {
-//    Optional<User> userOptional = userService.getUserExtra(principal);
-//    User userExtra = userOptional.orElseGet(() -> new User(principal, userRepresentation.getUsername(), userRepresentation.getEmail(), userRepresentation.getFirstName(), userRepresentation.getLastName()));
-//    userExtra.setAvatar(updateUserRequest.getAvatar());
-//    return userService.saveUserExtra(userExtra);
-//  }
-
-  @GetMapping("/name/{firstName}")
-  public List<User> findByFirstName(@PathVariable  String firstName){
-    return userService.findByFirstName(firstName);
-  }
-
-  @GetMapping("/id/{id}")
-  public Optional<User> findById(@PathVariable  String id){
-    return userService.findByID(id);
-
-  }
-
-  @PutMapping("/nacionUpdate")
-  public User updateNacionality(@RequestParam   String id, @RequestParam String nacionalidad){
-    return userService.updateNacionalidad(id, nacionalidad);
-  }
-
-
-
-
-
-
-
-
+//    @GetMapping("/admin/{username}")
+//    @PreAuthorize("hasAuthority('ROLE_admin')")
+//    public User getUserByUsername(@PathVariable("username") String username){
+//      return userService.findByUsername(username);
+//    }
+//
+//    @GetMapping("/findUsername/{username}")
+//    public User getByUsername(@PathVariable("username") String username){
+//      return userService.findByUsername(username);
+//
+//    }
 
 }
+
